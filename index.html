@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>私人博客</title>
+    <meta
+      name="description"
+      content="个人博客，收纳文章、书影音评分和省份旅行地图。"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="回到首页">
+        <span class="brand-mark"></span>
+        <span>个人博客</span>
+      </a>
+      <nav class="site-nav" aria-label="主要导航">
+        <a href="#notes">文章</a>
+        <a href="#shelf">影音书籍</a>
+        <a href="#travel">旅行地图</a>
+        <a href="#about">关于</a>
+      </nav>
+      <div class="bgm-control" aria-label="背景音乐控制">
+        <button class="bgm-step" type="button" data-bgm-prev aria-label="上一首背景音乐">PREV</button>
+        <button class="bgm-button" type="button" data-bgm-toggle aria-pressed="false">BGM OFF</button>
+        <button class="bgm-step" type="button" data-bgm-next aria-label="下一首背景音乐">NEXT</button>
+        <label class="bgm-progress" aria-label="背景音乐进度">
+          <span data-bgm-current>0:00</span>
+          <input type="range" min="0" max="100" value="0" step="0.1" data-bgm-progress />
+          <span data-bgm-duration>0:00</span>
+        </label>
+        <span data-bgm-title>background loop</span>
+      </div>
+      <audio data-bgm-audio preload="metadata"></audio>
+    </header>
+
+    <main id="top">
+      <section class="blog-home" id="notes" aria-labelledby="site-title">
+        <div class="post-column">
+          <div class="blog-intro">
+            <p class="eyebrow">ENGINEERING NOTES / PRIVATE ARCHIVE</p>
+            <h1 id="site-title">你好</h1>
+            <p>
+                欢迎来到我的博客，在这里你将看到一个干瘪的人寻找丢失的艺术细胞。或许在这里，你会更加了解我。PS：有些内容还未建设完全，影评等暂时是AI填充的。
+            </p>
+          </div>
+
+          <div class="toolbar blog-toolbar">
+            <div class="segmented" data-post-filters aria-label="文章分类"></div>
+          </div>
+
+          <div class="post-list" data-post-list></div>
+        </div>
+
+        <aside class="blog-sidebar" aria-label="博客侧栏">
+          <section class="side-panel profile-panel">
+            <p class="panel-kicker">PROFILE</p>
+            <div class="profile-identity">
+              <img src="assets/covers/cmbyn_peach.jpg" alt="Plover 的头像" />
+              <div>
+                <h2>Plover</h2>
+                <p>INTJ|纯血工科生|这书我一天都不想读了|总有一天会将地图填满</p>
+              </div>
+            </div>
+            <div class="profile-stats" data-profile-stats></div>
+          </section>
+
+          <section class="side-panel">
+            <p class="panel-kicker">CATEGORIES</p>
+            <div class="category-list" data-category-list></div>
+          </section>
+
+          <section class="side-panel">
+            <p class="panel-kicker">ARCHIVE</p>
+            <div data-archive></div>
+          </section>
+
+          <section class="side-panel">
+            <p class="panel-kicker">RECENT RATING</p>
+            <div class="recent-shelf" data-recent-shelf></div>
+          </section>
+        </aside>
+      </section>
+
+      <section class="content-band" id="shelf" aria-labelledby="shelf-title">
+        <div class="section-heading">
+          <span>02</span>
+          <div>
+            <h2 id="shelf-title">书影音架</h2>
+            <p>影视、专辑的封面、评分和点开后的个人感受。</p>
+          </div>
+        </div>
+
+        <div class="shelf-panel" data-shelf-panel hidden>
+          <div class="toolbar shelf-toolbar">
+            <div class="segmented" data-shelf-tabs aria-label="书影音类型"></div>
+            <p class="muted-line" data-shelf-count></p>
+          </div>
+
+          <div class="shelf" data-shelf-grid></div>
+        </div>
+        <div class="shelf-fold">
+          <button class="fold-button" type="button" data-shelf-toggle></button>
+          <button class="fold-button fold-button-secondary" type="button" data-shelf-close hidden>收起影音书籍</button>
+        </div>
+      </section>
+
+      <section class="content-band" id="travel" aria-labelledby="travel-title">
+        <div class="section-heading">
+          <span>03</span>
+          <div>
+            <h2 id="travel-title">旅行地图</h2>
+            <p>中国省份地图。只高亮已经去过的省份，点击后查看相册和旅行日记。</p>
+          </div>
+        </div>
+
+        <div class="travel-grid">
+          <div class="map-shell">
+            <div class="map-toolbar">
+              <span>VISITED PROVINCES</span>
+              <strong data-travel-count></strong>
+            </div>
+            <svg
+              class="china-map"
+              data-china-map
+              viewBox="0 0 920 720"
+              role="img"
+              aria-label="可点击的中国省份旅行地图"
+            ></svg>
+          </div>
+
+          <article class="travel-reader" data-travel-reader></article>
+        </div>
+      </section>
+
+      <section class="about-band" id="about" aria-labelledby="about-title">
+        <div class="about-copy">
+          <span>04</span>
+          <h2 id="about-title">关于这个站点</h2>
+          <p>
+              目前包含：个人随笔，旅行地图，影音推荐。手搓blog（Codex神力）得把这个Codex用回本。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <div class="modal" data-modal hidden>
+      <div class="modal-backdrop" data-close-modal></div>
+      <article class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="icon-button modal-close" type="button" data-close-modal aria-label="关闭">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+        <div class="modal-media" data-modal-media></div>
+        <div class="modal-body">
+          <p class="modal-kicker" data-modal-kicker></p>
+          <h2 id="modal-title" data-modal-title></h2>
+          <p class="modal-meta" data-modal-meta></p>
+          <div class="modal-copy" data-modal-copy></div>
+        </div>
+      </article>
+    </div>
+
+    <script src="assets/maps/china-provinces.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
